@@ -1,8 +1,8 @@
 # Greed
-A cool Lua library attempting to enrich the standard library with useful methods and other extra content.
+Greed is a _cool_ Lua library attempting to enrich the standard library with useful methods and other extra content.
 
 # Guide
-So far, this library only adds a few features, which includes:
+So far, this library only adds a few features, which includes stuff like _a better type system_ and _extra methods_.
 
 ## Result types
 Borrowed from rust (pun intended), Lua can now use result types for error handling instead of obscure program crashes.
@@ -54,5 +54,25 @@ For now, this is still heavily WIP, but it has some good features so far:
 
     local Lamborghini = Car:new("Lamborghini", "dunno", 2025)
 
-    print(typeof(Lamborghini)) -- should be "Car"
+    print(typeof(Lamborghini)) -- output: Car
+    ```
+- Enums
+    The syntax for an enum is relatively simple:
+    ```lua
+    local enum_name = makeenum("enum_nam", {
+        "one",
+        "two",
+        "three"
+    })
+    ```
+    The **value** of each key in the table must be a string, specifically, a valid lua identifier. 
+    Accessing an enum instance goes as:
+
+    ```lua
+    print(enum_name.one) -- output: 1
+    ```
+
+    The type of the enum instance is not something like `enum`, it is the name from the first parameter of `makeenum`.
+    ```lua
+    print(typeof(enum_name)) -- output: enum_nam
     ```

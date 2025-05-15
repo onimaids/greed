@@ -10,6 +10,7 @@
 - [ ] Different types available for tables (e.g. `list` and `hashmap` instead of being purely abstact)
 
 # Type system enhancements
-- [ ] Constructor shortcut 
+- [x] Constructor shortcut 
 - [ ] Better support for inheritance
-- [ ] `instanceof` for syntatic sugar
+- [x] `instanceof` for syntatic sugar
+- [x] Enums
