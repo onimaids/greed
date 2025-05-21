@@ -5,7 +5,7 @@ end
 function string.split(s, sep)
   local t = {}
 
-  for sstr in string.gmatch(s, "([^" .. sep .. "]+)") do
+  for sstr in string.gmatch(s, "([^" .. sep:gsub("([^%w])", "%%%1") .. "]+)") do
     table.insert(t, sstr)
   end
 
