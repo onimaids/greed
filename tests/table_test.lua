@@ -1,5 +1,5 @@
-package.path = package.path .. ";../?.lua"
-require("greed.table")
+-- package.path = package.path .. ";../?.lua"
+require("greed.result")
 
 local t = {1, 2, {3, 4}}
 
@@ -24,15 +24,15 @@ local filtered_t = table.filter(t, function (v)
 end)
 print(table.format(filtered_t, " ", nil))
 
-local new_t2 = table.filter(new_t, function (v)
-  return v % 2 == 1
-end)
-
-print(
-  string.format("mix between v %% 2 == 1 and v %% 2 == 0: %s",
-    table.format(
-      table.dmerge(new_t, new_t2),
-      " "
-    )
-  )
-)
+-- local new_t2 = table.filter(new_t, function (v)
+--   return v % 2 == 1
+-- end)
+--
+-- print(
+--   string.format("mix between v %% 2 == 1 and v %% 2 == 0: %s",
+--     table.format(
+--       table.dmerge(new_t, new_t2),
+--       " "
+--     )
+--   )
+-- )

@@ -2,8 +2,7 @@
 - [ ] Message logging
 
 # Result types
-- [ ] `unwrap` and `expect` to match Rust even more
-- [ ] `and_then` and `or_then` methods for chaining calls
+- [x] `unwrap` and `expect` to match Rust even more
 
 # Tables
 - [x] `map`, `merge`, `equals` (shallow) and `filter` methods
@@ -11,9 +10,6 @@
 
 # Type system enhancements
 - [x] Constructor shortcut 
-<<<<<<< HEAD
 - [ ] Better support for inheritance
-=======
->>>>>>> 2197223 (Added enums; still in beta. Added more useful methods to standard library tables and made classes easier to make)
 - [x] `instanceof` for syntatic sugar
 - [x] Enums

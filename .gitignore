@@ -1,2 +1,6 @@
-.luarc.json
-*/.luarc.json
+/.luarc.json
+/*/.luarc.json
+/luarocks
+/lua
+/lua_modules
+/.luarocks

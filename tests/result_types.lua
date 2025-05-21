@@ -1,6 +1,6 @@
-package.path = package.path .. ";../?.lua"
-require("greed.table")
-require("greed.result")
+-- package.path = package.path .. ";../?.lua"
+require("greed.src.result")
+require("greed.src.string")
 
 local function is_string(v)
   if type(v) == "string" then

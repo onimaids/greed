@@ -33,7 +33,7 @@ local mt = {
 
 -- visible methods
 mt.__index = {
-  is_ok = function(r)
+  is_ok = function (r)
     return r.__result_type == ok_value
   end,
 
@@ -41,9 +41,25 @@ mt.__index = {
     return r.__result_type == err_value
   end,
 
-  get_result = function(r)
+  unwrap = function (r)
+    if r.__result_type == err_value then
+      error("Result error!")
+    end
+
     return r.__result
-  end
+  end,
+
+  unwrap_or = function (r, default)
+    return r.__result_type == ok_value and r.__result or default
+  end,
+
+  expect = function (r, msg)
+    if r.__result_type == err_value then
+      error(msg)
+    end
+
+    return r.__result
+  end,
 }
 
 -- CONSTRUCTORS
@@ -74,12 +90,7 @@ end
 -- is fine or nil when an error occured
 function toresult(func, ...)
   local ok, res = pcall(func, ...)
-
-  if not ok then
-    return Err(res)
-  end
-
-  return Ok(res)
+  return ok and Ok(res) or Err(res)
 end
 
 -- function toresult_direct(res, errmsg)

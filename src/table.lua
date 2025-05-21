@@ -23,11 +23,9 @@ function table.copy(t)
   for i, v in pairs(t) do
     if type(v) == "table" then
       o[i] = table.copy(v)
-      goto continue
+    else
+      o[i] = v
     end
-
-    o[i] = v
-    ::continue::
   end
 
   setmetatable(o, getmetatable(t))
@@ -49,12 +47,9 @@ function table.format(t, sep, depth)
         .. subtable_indent
         .. string.format("[%s] = ", k)
         .. table.format(v, (depth == nil) and 1 or depth + 1, sep)
-
-      goto continue
+    else
+      fmt = fmt .. subtable_indent .. string.format("[%s] = %s,\n", k, v)
     end
-
-    fmt = fmt .. subtable_indent .. string.format("[%s] = %s,\n", k, v)
-    ::continue::
   end
 
   fmt = fmt .. current_indent ..  "}\n"
@@ -93,34 +88,34 @@ function table.filter(t, pred, iter)
 end
 
 -- still WIP a bit
-function table.dmerge(t1, t2, mt, iter)
-  iter = (iter == nil) and pairs or iter
+-- function table.dmerge(t1, t2, mt, iter)
+--   iter = (iter == nil) and pairs or iter
+--
+--   local new_t = table.copy(t1)
+--   for key, v in iter(t2) do
+--     if type(v) == "table" then
+--       v = table.copy(v)
+--     end
+--
+--     new_t[key] = v
+--   end
+--
+--   if mt ~= nil then setmetatable(new_t, mt) end
+--   return new_t
+-- end
 
-  local new_t = table.copy(t1)
-  for key, v in iter(t2) do
-    if type(v) == "table" then
-      v = table.copy(v)
-    end
-
-    new_t[key] = v
-  end
-
-  if mt ~= nil then setmetatable(new_t, mt) end
-  return new_t
-end
-
-function table.smerge(t1, t2, iter)
-  iter = (iter == nil) and pairs or iter
-
-  -- true content
-  local new_t = table.copy(t1)
-
-  for key, v in iter(t2) do
-    new_t[key] = v
-  end
-
-  return new_t
-end
+-- function table.smerge(t1, t2, iter)
+--   iter = (iter == nil) and pairs or iter
+--
+--   -- true content
+--   local new_t = table.copy(t1)
+--
+--   for key, v in iter(t2) do
+--     new_t[key] = v
+--   end
+--
+--   return new_t
+-- end
 
 -- returns the first occurence, index and key
 function table.find(t, pred, iter)
